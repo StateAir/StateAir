@@ -16,3 +16,6 @@ nbproject
 .idea
 .dat*.*
 .bundle
+Gemfile.lock
+/vendor/Pods/
+/vendor/build/

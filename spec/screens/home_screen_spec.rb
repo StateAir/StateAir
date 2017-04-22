@@ -20,8 +20,11 @@ describe HomeScreen do
   end
 
   it "opens the help screen when tapping Help" do
-    tap("Help")
-    controller.topViewController.should.be.kind_of(HelpScreen)
+    3.times { tap("Help") }
+
+    wait 0.1 do
+      controller.topViewController.should.be.kind_of(HelpScreen)
+    end
   end
 
 end
