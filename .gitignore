@@ -19,3 +19,4 @@ nbproject
 Gemfile.lock
 /vendor/Pods/
 /vendor/build/
+/vendor/gems/
