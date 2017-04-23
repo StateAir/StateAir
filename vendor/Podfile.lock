@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CorePlot (2.2)
   - FontAwesomeKit (2.2.1):
     - FontAwesomeKit/Core (= 2.2.1)
     - FontAwesomeKit/FontAwesome (= 2.2.1)
@@ -44,12 +45,14 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
+  - CorePlot
   - FontAwesomeKit (~> 2.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
   FontAwesomeKit: 3614979b3dbb0ec3f7fac1bd760b91f66c31db67
 
-PODFILE CHECKSUM: 050cab0d2199cbbec2f4d57f288f8886a9c11abb
+PODFILE CHECKSUM: cf165746a5c4205e2a791f9b8bc809003cc4d8d9
 
 COCOAPODS: 1.2.1
