@@ -11,7 +11,7 @@ gem 'ProMotion', '~> 2.0'
 
 # Awesome gem that adds a ton of helpers.
 # gem 'sugarcube', require: [ 'sugarcube-common' ]
-gem 'sugarcube', require: %w{sugarcube-color sugarcube-ui}
+gem 'sugarcube', require: %w{sugarcube-color sugarcube-ui sugarcube-repl}
 
 # Layout and styling gem
 # gem 'motion-kit', '~> 0.17'

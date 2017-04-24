@@ -1,13 +1,25 @@
 class AQIChartScreen < PM::Screen
 
   attr_accessor :timestamp, :aqi
+  attr_accessor :index
+  attr_accessor :city
+
+  def self.new(args = {})
+    super
+
+    if args[:city]
+      @city = args[:city]
+    else
+      @city = [:beijing, :shanghai, :shenyang, :chengdu, :guangzhou].sample
+    end
+  end
 
   def load_view
     self.view = layout.view
   end
 
   def on_load
-    StateAir.latest(:beijing) do |res|
+    StateAir.latest(@city) do |res|
       @timestamp, @aqi = res.map {|i| [i['timestamp'], i['aqi']]}.transpose
       setup_chart(@timestamp, @aqi)
     end

@@ -11,8 +11,13 @@ class AQIChartLayout < MK::Layout
   end
 
   def host_view_style
-    frame self.view.frame
-    background_color :blue.uicolor(0.95)
+    background_color [255, 102, 0].uicolor
+
+    constrains do
+      width '100%'
+      height '100%'
+      center.equals(:superview)
+    end
   end
 
 end
