@@ -38,7 +38,7 @@ class PageScreen < UIPageViewController
     s = self.alloc.initWithTransitionStyle UIPageViewControllerTransitionStyleScroll,
                     navigationOrientation: UIPageViewControllerNavigationOrientationHorizontal,
                                   options: {
-                                    UIPageViewControllerOptionSpineLocationKey: UIPageViewControllerSpineLocationNone
+                                    UIPageViewControllerOptionSpineLocationKey: UIPageViewControllerSpineLocationMid
                                   }
 
     s.screen_init(args) # Important for ProMotion stuff!
