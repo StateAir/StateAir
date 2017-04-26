@@ -11,10 +11,12 @@ class CityLayout < MK::Layout
         end
         add UIView, :card_main do
           add UILabel, :aqi_label
-          add UILabel, :desc_label
+          add UILabel, :aqi
+          add UILabel, :desc
         end
         add UIView, :card_footer do
           add UILabel, :conc_label
+          add UILabel, :conc
         end
       end
 
@@ -109,14 +111,25 @@ class CityLayout < MK::Layout
     end
   end
 
-  def desc_label_style
+  def aqi_style
+    text ''
+    font UIFont.fontWithName("Helvetica Neue", size: UIFont.labelFontSize)
+    size_to_fit
+
+    constraints do
+      center_x.equals(:superview)
+      top.equals(:aqi_label, :bottom)
+    end
+  end
+
+  def desc_style
     text 'Desc'
     font UIFont.fontWithName("Helvetica Neue", size: UIFont.systemFontSize)
     size_to_fit
 
     constraints do
       center_x.equals(:superview)
-      top.equals(:aqi_label, :bottom)
+      top.equals(:aqi, :bottom)
       bottom.equals(:superview)
     end
   end
@@ -129,6 +142,17 @@ class CityLayout < MK::Layout
     constraints do
       center_x.equals(:superview)
       top.equals(:superview)
+    end
+  end
+
+  def conc_style
+    text ''
+    font UIFont.fontWithName("Helvetica Neue", size: UIFont.systemFontSize)
+    size_to_fit
+
+    constraints do
+      center_x.equals(:superview)
+      top.equals(:conc_label, :bottom)
       bottom.equals(:superview)
     end
   end

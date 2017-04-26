@@ -9,8 +9,9 @@ class CityScreen < PM::Screen
 
   def on_load
     StateAir.latest(self.city) do |res|
-      self.items = res
-      setup_chart
+      self.items = res.sort{|x,y| x['timestamp']<=>y['timestamp']}
+      update_labels
+      update_chart
     end
   end
 
@@ -82,7 +83,14 @@ class CityScreen < PM::Screen
     end
   end
 
-  def setup_chart
+  def update_labels
+    layout.get(:reading_at).text = self.items.last['reading_at']
+    layout.get(:aqi).text = self.items.last['aqi']
+    layout.get(:desc).text = self.items.last['desc']
+    layout.get(:conc).text = self.items.last['conc']
+  end
+
+  def update_chart
     x, y_aqi, y_conc = self.items.map {|i| [i['timestamp'], i['aqi'], i['conc']]}.transpose
 
     step = (x.max - x.min) / (x.count - 1)
