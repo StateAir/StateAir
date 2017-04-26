@@ -85,8 +85,10 @@ class CityScreen < PM::Screen
   def setup_chart
     x, y_aqi, y_conc = self.items.map {|i| [i['timestamp'], i['aqi'], i['conc']]}.transpose
 
+    step = (x.max - x.min) / (x.count - 1)
+
     plot_space.setYRange CPTPlotRange.plotRangeWithLocation(0, length:['500', [y_aqi.max, y_conc.max].max*1.2].min)
-    plot_space.setXRange CPTPlotRange.plotRangeWithLocation(x.min, length:x.max-x.min)
+    plot_space.setXRange CPTPlotRange.plotRangeWithLocation(x.min - step/2, length:x.max-x.min + step)
 
     graph.addPlot aqi_plot, toPlotSpace: plot_space
     graph.addPlot conc_plot, toPlotSpace: plot_space
