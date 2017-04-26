@@ -41,7 +41,8 @@ class CityScreen < PM::Screen
     if fieldEnum == CPTScatterPlotFieldX # x
       return self.items[index]['timestamp']
     else
-      return self.items[index]['aqi']
+      return self.items[index]['aqi'] if plot == aqi_plot
+      return self.items[index]['conc'] if plot == conc_plot
     end
   end
 
@@ -65,19 +66,30 @@ class CityScreen < PM::Screen
     graph.defaultPlotSpace
   end
 
-  def plot
-    @plot ||= CPTScatterPlot.new.tap do |pl|
+  def aqi_plot
+    @aqi_plot ||= CPTBarPlot.new.tap do |pl|
+      pl.dataSource = self
+      pl.lineStyle = CPTMutableLineStyle.new.tap do |barLineStyle|
+        barLineStyle.lineWidth = 5
+        barLineStyle.lineColor = :light_gray.uicolor
+      end
+    end
+  end
+
+  def conc_plot
+    @conc_plot ||= CPTScatterPlot.new.tap do |pl|
       pl.dataSource = self
     end
   end
 
   def setup_chart
-    x, y = self.items.map {|i| [i['timestamp'], i['aqi']]}.transpose
+    x, y_aqi, y_conc = self.items.map {|i| [i['timestamp'], i['aqi'], i['conc']]}.transpose
 
-    plot_space.setYRange CPTPlotRange.plotRangeWithLocation(0, length:['500', y.max*2].min)
+    plot_space.setYRange CPTPlotRange.plotRangeWithLocation(0, length:['500', [y_aqi.max, y_conc.max].max*1.2].min)
     plot_space.setXRange CPTPlotRange.plotRangeWithLocation(x.min, length:x.max-x.min)
 
-    graph.addPlot plot, toPlotSpace: plot_space
+    graph.addPlot aqi_plot, toPlotSpace: plot_space
+    graph.addPlot conc_plot, toPlotSpace: plot_space
   end
 
 end
