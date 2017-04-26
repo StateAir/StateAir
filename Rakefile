@@ -30,4 +30,52 @@ Motion::Project::App.setup do |app|
   app.pods do
     pod 'CorePlot'
   end
+
+  app.development do
+    if ARGV[0] == 'device'
+      app.codesign_certificate = MotionProvisioning.certificate(
+        type: :development,
+        platform: :ios
+      )
+
+      app.provisioning_profile = MotionProvisioning.profile(
+        bundle_identifier: app.identifier,
+        app_name: app.name,
+        platform: :ios,
+        type: :development
+      )
+
+      puts "Using profile: #{app.provisioning_profile}"
+      puts "Using certificate: #{app.codesign_certificate}"
+    elsif ENV['CI']
+      app.codesign_certificate = nil
+      app.provisioning_profile = nil
+    else
+      app.codesign_certificate = nil
+      app.provisioning_profile = nil
+    end
+  end
+
+  app.release do
+    app.entitlements['get-task-allow'] = false
+    app.codesign_certificate = MotionProvisioning.certificate(
+      type: :distribution,
+      platform: :ios
+    )
+
+    app.provisioning_profile = MotionProvisioning.profile(
+      bundle_identifier: app.identifier,
+      app_name: app.name,
+      platform: :ios,
+      type: :distribution
+    )
+
+    app.entitlements['beta-reports-active'] = true
+    app.entitlements['application-identifier'] = app.seed_id + '.' + app.identifier
+    app.entitlements['keychain-access-groups'] = [ app.seed_id + '.' + app.identifier ]
+
+    puts "Using profile: #{app.provisioning_profile}"
+    puts "Using certificate: #{app.codesign_certificate}"
+  end
+
 end

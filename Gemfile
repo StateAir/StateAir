@@ -34,3 +34,4 @@ gem 'afmotion'
 # gem 'awesome_print_motion', '~> 0.1'
 
 gem 'moticons'
+gem 'motion-provisioning'
