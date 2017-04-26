@@ -79,6 +79,7 @@ class CityLayout < MK::Layout
 
   def most_recent_aqi_label_style
     text 'Most Recent AQI'
+    color :white.uicolor
     font UIFont.fontWithName("Helvetica Neue", size: UIFont.labelFontSize)
     size_to_fit
 
@@ -90,6 +91,7 @@ class CityLayout < MK::Layout
 
   def reading_at_style
     text 'Reading At'
+    color :white.uicolor
     font UIFont.fontWithName("Helvetica Neue", size: UIFont.systemFontSize)
     size_to_fit
 
@@ -136,6 +138,7 @@ class CityLayout < MK::Layout
 
   def conc_label_style
     text 'Conc'
+    color :white.uicolor
     font UIFont.fontWithName("Helvetica Neue", size: UIFont.systemFontSize)
     size_to_fit
 
@@ -147,6 +150,7 @@ class CityLayout < MK::Layout
 
   def conc_style
     text ''
+    color :white.uicolor
     font UIFont.fontWithName("Helvetica Neue", size: UIFont.systemFontSize)
     size_to_fit
 

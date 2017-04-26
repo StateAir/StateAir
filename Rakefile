@@ -14,6 +14,9 @@ Motion::Project::App.setup do |app|
   app.name = 'StateAir'
   app.identifier = 'com.liulantao.%s' % app.name.downcase.strip.gsub(/\s/, '_')
 
+  app.device_family = [:iphone, :ipad]
+  app.interface_orientations = [:portrait, :landscape_left, :landscape_right]
+
   app.short_version = $short_version
   app.version = $version
 
