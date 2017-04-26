@@ -14,6 +14,10 @@ class AppDelegate < PM::Delegate
     )
     UINavigationBar.appearance.setBackIndicatorImage icon_image(:awesome, :arrow_circle_left, size: :label.uifontsize, color: :white.uicolor)
     UINavigationBar.appearance.setBackIndicatorTransitionMaskImage icon_image(:awesome, :arrow_circle_o_left, size: :label.uifontsize, color: :white.uicolor)
+    UIPageControl.appearance.setPageIndicatorTintColor :gray.uicolor
+    UIPageControl.appearance.setCurrentPageIndicatorTintColor :white.uicolor
+    UIPageControl.appearance.setBackgroundColor :white.uicolor(0.1)
+    UIPageControl.appearance.setOpaque true
   end
 
 end
